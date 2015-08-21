@@ -35,7 +35,7 @@
 #include <util/delay.h>    // for _delay_us
 
 
-#if defined (__AVR_ATmega88__) || defined(__AVR_ATmega48__) || defined(__AVR_ATmega168__) || defined(__AVR_ATmega328__)
+#if defined (__AVR_ATmega88__) || defined(__AVR_ATmega48__) || defined(__AVR_ATmega168__) || defined(__AVR_ATmega328P__)
 // adapt Mega8 names to the newer Mega88 register+bit names
 
 // interrupts
