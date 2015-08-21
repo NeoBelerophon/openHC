@@ -1,0 +1,162 @@
+[Version]
+DLLVer=02.3003.00.1
+PRJVer=1
+
+[PRJKIND]
+mode=1
+
+[CPUTYPE]
+CpuSerise=907
+
+[DirInfo]
+PRJ=C:\Dokumente und Einstellungen\Ulli\Eigene Dateien\Eigene Dokumente\Projekte\PHC\uC\Build_Fujitsu_Bootloader\
+
+[PrjInfo]
+Count=2
+PrjInfo-0=Debug
+PrjInfo-1=Release
+Active=Debug
+
+[MEMBER]
+F0=15
+F1=0 f Source Files
+F2=0 c ..\Src_Bootloader\boot.c
+F3=0 c ..\Src_Bootloader\Platform_MB\hal_mb90495.c
+F4=0 a ..\Src_common\Platform_MB\Mb90495.asm
+F5=0 a ..\Src_common\Platform_MB\monitor.asm
+F6=0 * readme.txt
+F7=0 a ..\Src_Bootloader\Platform_MB\START.ASM
+F8=0 c ..\Src_Bootloader\Platform_MB\vectors.c
+F9=0 f Include Files
+F10=0 h ..\Src_Bootloader\boot.h
+F11=0 h ..\Src_Bootloader\hal.h
+F12=0 h ..\Src_Bootloader\Platform_MB\hal_platform.h
+F13=0 h ..\Src_common\Platform_MB\Mb90495.h
+F14=0 h ..\Src_common\Platform_MB\monitor.h
+F15=0 h ..\Src_Bootloader\Platform_MB\uart_platform.h
+
+[OPTIONFILE]
+FILE=options.dat
+
+[CPUTYPE-Debug]
+CpuName=MB90F497
+ChgChipInfo-0=5@0x000000:0x000000:0x000000:0x000000:0x000100:0x0008FF
+Count=1
+
+[DirInfo-Debug]
+CONFIG=.\
+OBJ=debug\OBJ\
+LST=debug\LST\
+OPT=OPT\
+
+[MEMBER-Debug]
+F0=7
+F1=0 m 1 debug\ABS\PHC.abs
+F2=8 c 1 ..\Src_Bootloader\boot.c
+F2-1=- ..\src_bootloader\hal.h
+F2-2=- ..\src_bootloader\boot.h
+F2-3=- ..\Src_common\Platform_MB\stdint.h
+F2-4=- ..\Src_common\Platform_MB\monitor.h
+F2-5=- ..\Src_common\Platform_MB\mb90495.h
+F2-6=- ..\Src_Bootloader\Platform_MB\hal_platform.h
+F2-7=- ..\Src_Bootloader\Platform_MB\uart_platform.h
+F2-8=- ..\Src_Bootloader\Platform_MB\util/\crc16.h
+F3=0 a 1 ..\Src_common\Platform_MB\Mb90495.asm
+F4=0 a 1 ..\Src_common\Platform_MB\monitor.asm
+F5=5 c 1 ..\Src_Bootloader\Platform_MB\hal_mb90495.c
+F5-1=- ..\Src_common\Platform_MB\stdint.h
+F5-2=- ..\Src_common\Platform_MB\mb90495.h
+F5-3=- ..\Src_common\Platform_MB\monitor.h
+F5-4=- ..\src_bootloader\hal.h
+F5-5=- ..\Src_Bootloader\Platform_MB\hal_platform.h
+F6=1 c 1 ..\Src_Bootloader\Platform_MB\vectors.c
+F6-1=- ..\Src_common\Platform_MB\mb90495.h
+F7=0 a 1 ..\Src_Bootloader\Platform_MB\START.ASM
+
+[BUILDMODE-Debug]
+kernel=0
+
+[RUNSET-Debug]
+CONVERT=1
+CONVERTKIND=0
+
+[DebState-Debug]
+SupCount=3
+Supfile-0=emulate com1.sup
+Supfile-1=emulate com2.sup
+Supfile-2=simulate.sup
+Current=emulate com2.sup
+AliasFile=
+CPURunMode=16,16,16,16,0,1,0x0:0x0,,0,0xFF
+
+[CPUTYPE-Release]
+CpuName=MB90F497
+ChgChipInfo-0=5@0x000000:0x000000:0x000000:0x000000:0x000100:0x0008FF
+Count=1
+
+[DirInfo-Release]
+CONFIG=Release\
+OBJ=Release\OBJ\
+LST=Release\LST\
+OPT=Release\OPT\
+
+[MEMBER-Release]
+F0=7
+F1=0 m 1 Release\ABS\PHC.abs
+F2=0 c 1 ..\Src_Bootloader\boot.c
+F3=0 a 1 ..\Src_common\Platform_MB\Mb90495.asm
+F4=0 a 1 ..\Src_common\Platform_MB\monitor.asm
+F5=0 c 1 ..\Src_Bootloader\Platform_MB\hal_mb90495.c
+F6=0 c 1 ..\Src_Bootloader\Platform_MB\vectors.c
+F7=0 a 1 ..\Src_Bootloader\Platform_MB\START.ASM
+
+[BUILDMODE-Release]
+kernel=1
+
+[RUNSET-Release]
+CONVERT=1
+CONVERTKIND=0
+
+[DebState-Release]
+SupCount=1
+Supfile-0=Release\PHC.sup
+Current=PHC.sup
+AliasFile=
+CPURunMode=16,16,16,16,0,1,0x0:0x0,,0,0xFF
+
+[AsmBefore]
+Count=0
+
+[AsmAfter]
+Count=0
+
+[CcBefore]
+Count=0
+
+[CcAfter]
+Count=0
+
+[LnkBefore]
+Count=0
+
+[LnkAfter]
+Count=0
+
+[LibBefore]
+Count=0
+
+[LibAfter]
+Count=0
+
+[CnvBefore]
+Count=0
+
+[CnvAfter]
+Count=0
+
+[ConfigBefore]
+Count=0
+
+[ConfigAfter]
+Count=0
+

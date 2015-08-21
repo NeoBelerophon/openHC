@@ -1,0 +1,169 @@
+$CPUSERIES-907
+$Prj-Debug
+$0
+-g
+-w 3
+-INF LIST
+-D DEBUG
+-D CPU_MB
+-D CFG_OUTPUT
+-I "..\Src_common"
+-I "..\Src_common\Platform_MB"
+-O 4
+-K SPEED
+-model MEDIUM
+-Xdof
+-K EOPT
+-K LIB
+-K UNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1176033398
+$end
+$1
+-g
+-w 2
+-D DEBUG
+-linf ON
+-lsrc ON
+-lsec ON
+-lcros OFF
+-linc ON
+-lexp OBJ
+-pl 60
+-pw 100
+-tab 8
+-lf
+-Xdof
+$other
+$time
+1122968736
+$end
+$2
+-g
+-AL 2
+-ro ROM=0xFF0000/0xFFFFFF
+-ra RAM=0x000100/0x0008FF
+-sc CONST/Const/WORD=0xFF4000
+-check_rora
+-check_locate
+-rg 0
+-m
+-pl 60
+-pw 132
+-Xals
+-Xalr
+-na
+-w 2
+-Xdof
+$other
+$time
+1176033346
+$end
+$3
+-dt s,d,r,a
+-pl 60
+-pw 132
+-g
+-Xdof
+$other
+$time
+1176033346
+$end
+$4
+-Xdof
+$other
+$time
+1122796766
+$end
+$5
+$other
+$time
+1122796766
+$end
+$Prjend
+$Prj-Release
+$0
+-g
+-w 3
+-INF LIST
+-D NDEBUG
+-D CPU_MB
+-I "..\Src_common"
+-O 3
+-K SIZE
+-model MEDIUM
+-K ADDSP
+-Xdof
+-K EOPT
+-K NOLIB
+-K NOUNROLL
+$other
+-INF srcin  -T p,-B
+$time
+1125651920
+$end
+$1
+-g
+-w 2
+-D NDEBUG
+-linf ON
+-lsrc ON
+-lsec ON
+-lcros OFF
+-linc ON
+-lexp OBJ
+-pl 60
+-pw 100
+-tab 8
+-lf
+-Xdof
+$other
+$time
+1122968736
+$end
+$2
+-g
+-AL 2
+-ro ROM=0xFF0000/0xFFFFFF
+-ra RAM=0x000100/0x0008FF
+-sc CONST/Const/WORD=0xFF4000
+-check_rora
+-check_locate
+-rg 0
+-m
+-pl 60
+-pw 132
+-Xals
+-Xalr
+-na
+-w 2
+-Xdof
+$other
+$time
+1176033346
+$end
+$3
+-dt s,d,r,a
+-pl 60
+-pw 132
+-g
+-Xdof
+$other
+$time
+1176033346
+$end
+$4
+-Xdof
+$other
+$time
+1122794864
+$end
+$5
+$other
+$time
+1122794864
+$end
+$Prjend
+$CPUSERIESEND

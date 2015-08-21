@@ -1,0 +1,246 @@
+[Version]
+DLLVer=02.3003.00.1
+PRJVer=1
+
+[PRJKIND]
+mode=1
+
+[CPUTYPE]
+CpuSerise=907
+
+[DirInfo]
+PRJ=C:\Dokumente und Einstellungen\Ulli\Eigene Dateien\Eigene Dokumente\Projekte\PHC\uC\Build_Fujitsu_AM\
+
+[PrjInfo]
+Count=2
+PrjInfo-0=Debug
+PrjInfo-1=Release
+Active=Debug
+
+[MEMBER]
+F0=25
+F1=0 f Source Files
+F2=0 c ..\Src_common\Platform_MB\hal_mb90495.c
+F3=0 c ..\Src_AM\Main.c
+F4=0 a ..\Src_common\Platform_MB\Mb90495.asm
+F5=0 a ..\Src_common\Platform_MB\monitor.asm
+F6=0 c ..\Src_common\msg.c
+F7=0 c ..\Src_AM\output.c
+F8=0 c ..\Src_common\phc.c
+F9=0 c ..\Src_common\random.c
+F10=0 * readme.txt
+F11=0 a ..\Src_common\Platform_MB\START.ASM
+F12=0 c ..\Src_common\timer.c
+F13=0 c ..\Src_common\uart.c
+F14=0 c ..\Src_common\Platform_MB\vectors.c
+F15=0 f Include Files
+F16=0 h ..\Src_common\hal.h
+F17=0 h ..\Src_common\Platform_MB\Mb90495.h
+F18=0 h ..\Src_common\Platform_MB\monitor.h
+F19=0 h ..\Src_common\msg.h
+F20=0 h ..\Src_common\phc_protocol.h
+F21=0 h ..\Src_common\random.h
+F22=0 h ..\Src_common\Platform_MB\stdint.h
+F23=0 h ..\Src_common\timer.h
+F24=0 h ..\Src_common\uart.h
+F25=0 h ..\Src_common\Platform_MB\uart_mb90495.h
+
+[OPTIONFILE]
+FILE=options.dat
+
+[CPUTYPE-Debug]
+CpuName=MB90F497
+ChgChipInfo-0=5@0x000000:0x000000:0x000000:0x000000:0x000100:0x0008FF
+Count=1
+
+[DirInfo-Debug]
+CONFIG=.\
+OBJ=debug\OBJ\
+LST=debug\LST\
+OPT=OPT\
+
+[MEMBER-Debug]
+F0=13
+F1=0 m 1 debug\ABS\PHC.abs
+F2=11 c 1 ..\Src_AM\Main.c
+F2-1=- ..\Src_AM\output.h
+F2-2=- ..\Src_common\hal.h
+F2-3=- ..\Src_common\uart.h
+F2-4=- ..\Src_common\timer.h
+F2-5=- ..\Src_common\msg.h
+F2-6=- ..\Src_common\phc.h
+F2-7=- ..\src_common\random.h
+F2-8=- ..\Src_common\Platform_MB\stdint.h
+F2-9=- ..\Src_common\Platform_MB\hal_platform.h
+F2-10=- ..\Src_common\Platform_MB\timer_platform.h
+F2-11=- ..\Src_common\Platform_MB\mb90495.h
+F3=7 c 1 ..\Src_common\timer.c
+F3-1=- ..\Src_common\timer.h
+F3-2=- ..\Src_common\msg.h
+F3-3=- ..\Src_common\hal.h
+F3-4=- ..\Src_common\Platform_MB\stdint.h
+F3-5=- ..\Src_common\Platform_MB\mb90495.h
+F3-6=- ..\Src_common\Platform_MB\hal_platform.h
+F3-7=- ..\Src_common\Platform_MB\timer_platform.h
+F4=5 c 1 ..\Src_common\msg.c
+F4-1=- ..\Src_common\msg.h
+F4-2=- ..\Src_common\hal.h
+F4-3=- ..\Src_common\uart.h
+F4-4=- ..\Src_common\Platform_MB\stdint.h
+F4-5=- ..\Src_common\Platform_MB\hal_platform.h
+F5=10 c 1 ..\Src_common\uart.c
+F5-1=- ..\Src_common\hal.h
+F5-2=- ..\Src_common\msg.h
+F5-3=- ..\Src_common\phc.h
+F5-4=- ..\Src_common\uart.h
+F5-5=- ..\Src_common\timer.h
+F5-6=- ..\Src_common\Platform_MB\stdint.h
+F5-7=- ..\Src_common\Platform_MB\mb90495.h
+F5-8=- ..\Src_common\Platform_MB\hal_platform.h
+F5-9=- ..\Src_common\Platform_MB\timer_platform.h
+F5-10=- ..\Src_common\Platform_MB\uart_platform.h
+F6=11 c 1 ..\Src_common\phc.c
+F6-1=- ..\Src_common\uart.h
+F6-2=- ..\Src_common\timer.h
+F6-3=- ..\Src_common\msg.h
+F6-4=- ..\Src_common\hal.h
+F6-5=- ..\Src_common\phc.h
+F6-6=- ..\src_common\random.h
+F6-7=- ..\Src_common\Platform_MB\stdint.h
+F6-8=- ..\Src_common\Platform_MB\monitor.h
+F6-9=- ..\Src_common\Platform_MB\timer_platform.h
+F6-10=- ..\Src_common\Platform_MB\mb90495.h
+F6-11=- ..\Src_common\Platform_MB\hal_platform.h
+F7=11 c 1 ..\Src_AM\output.c
+F7-1=- ..\Src_AM\output.h
+F7-2=- ..\Src_common\msg.h
+F7-3=- ..\Src_common\timer.h
+F7-4=- ..\Src_common\hal.h
+F7-5=- ..\Src_common\phc.h
+F7-6=- ..\Src_common\uart.h
+F7-7=- ..\src_common\random.h
+F7-8=- ..\Src_common\Platform_MB\stdint.h
+F7-9=- ..\Src_common\Platform_MB\timer_platform.h
+F7-10=- ..\Src_common\Platform_MB\mb90495.h
+F7-11=- ..\Src_common\Platform_MB\hal_platform.h
+F8=2 c 1 ..\Src_common\random.c
+F8-1=- ..\src_common\random.h
+F8-2=- ..\Src_common\Platform_MB\stdint.h
+F9=1 c 1 ..\Src_common\Platform_MB\vectors.c
+F9-1=- ..\Src_common\Platform_MB\mb90495.h
+F10=5 c 1 ..\Src_common\Platform_MB\hal_mb90495.c
+F10-1=- ..\Src_common\Platform_MB\stdint.h
+F10-2=- ..\Src_common\Platform_MB\mb90495.h
+F10-3=- ..\Src_common\Platform_MB\monitor.h
+F10-4=- ..\Src_common\hal.h
+F10-5=- ..\Src_common\Platform_MB\hal_platform.h
+F11=0 a 1 ..\Src_common\Platform_MB\Mb90495.asm
+F12=0 a 1 ..\Src_common\Platform_MB\monitor.asm
+F13=0 a 1 ..\Src_common\Platform_MB\START.ASM
+
+[BUILDMODE-Debug]
+kernel=0
+
+[RUNSET-Debug]
+CONVERT=1
+CONVERTKIND=0
+
+[DebState-Debug]
+SupCount=3
+Supfile-0=emulate com1.sup
+Supfile-1=emulate com2.sup
+Supfile-2=simulate.sup
+Current=emulate com2.sup
+AliasFile=
+CPURunMode=16,16,16,16,0,1,0x0:0x0,,0,0xFF
+
+[CPUTYPE-Release]
+CpuName=MB90F497
+ChgChipInfo-0=5@0x000000:0x000000:0x000000:0x000000:0x000100:0x0008FF
+Count=1
+
+[DirInfo-Release]
+CONFIG=Release\
+OBJ=Release\OBJ\
+LST=Release\LST\
+OPT=Release\OPT\
+
+[MEMBER-Release]
+F0=13
+F1=0 m 1 Release\ABS\PHC.abs
+F2=7 c 1 ..\Src_AM\Main.c
+F2-1=- ..\Src_common\hal.h
+F2-2=- ..\Src_common\uart.h
+F2-3=- ..\Src_common\timer.h
+F2-4=- ..\Src_common\mb90495.h
+F2-5=- ..\Src_common\msg.h
+F2-6=- ..\Src_common\monitor.h
+F2-7=- ..\Src_EM\input.h
+F3=4 c 1 ..\Src_common\timer.c
+F3-1=- ..\Src_common\timer.h
+F3-2=- ..\Src_common\mb90495.h
+F3-3=- ..\Src_EM\switch.h
+F3-4=- ..\Src_common\msg.h
+F4=2 c 1 ..\Src_common\msg.c
+F4-1=- ..\Src_common\msg.h
+F4-2=- ..\Src_common\hal.h
+F5=0 c 1 ..\Src_common\uart.c
+F6=0 c 1 ..\Src_common\phc.c
+F7=0 c 1 ..\Src_AM\output.c
+F8=0 c 1 ..\Src_common\random.c
+F9=0 c 1 ..\Src_common\Platform_MB\vectors.c
+F10=0 c 1 ..\Src_common\Platform_MB\hal_mb90495.c
+F11=0 a 1 ..\Src_common\Platform_MB\Mb90495.asm
+F12=0 a 1 ..\Src_common\Platform_MB\monitor.asm
+F13=0 a 1 ..\Src_common\Platform_MB\START.ASM
+
+[BUILDMODE-Release]
+kernel=1
+
+[RUNSET-Release]
+CONVERT=1
+CONVERTKIND=0
+
+[DebState-Release]
+SupCount=1
+Supfile-0=Release\PHC.sup
+Current=PHC.sup
+AliasFile=
+CPURunMode=16,16,16,16,0,1,0x0:0x0,,0,0xFF
+
+[AsmBefore]
+Count=0
+
+[AsmAfter]
+Count=0
+
+[CcBefore]
+Count=0
+
+[CcAfter]
+Count=0
+
+[LnkBefore]
+Count=0
+
+[LnkAfter]
+Count=0
+
+[LibBefore]
+Count=0
+
+[LibAfter]
+Count=0
+
+[CnvBefore]
+Count=0
+
+[CnvAfter]
+Count=0
+
+[ConfigBefore]
+Count=0
+
+[ConfigAfter]
+Count=0
+

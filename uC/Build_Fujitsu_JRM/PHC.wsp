@@ -1,0 +1,22 @@
+[CPUTYPE]
+CpuSerise=907
+
+[PrjFile]
+Count=1
+FILE-0=PHC.prj
+ActivePrj=PHC.prj
+
+[SubPrj-PHC.prj]
+Count=0
+
+[DebState]
+AutoSave=1
+Exec=0
+AutoLoad=1
+
+[DirInfo]
+WSP=C:\Dokumente und Einstellungen\Ulli\Eigene Dateien\Eigene Dokumente\Projekte\PHC\uC\Build_Fujitsu_JRM\
+
+[EditState]
+Count=0
+

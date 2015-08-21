@@ -1,0 +1,24 @@
+Rolladenmodul reverse Specification 
+-----------------------------------
+
+Allgemein:
+- Wechsel zwischen Heben und Senken fügt eine Pause von ca. 0.6 s ein
+
+Prioritäten:
+- Fahrbefehle unterschiedlicher Prioritäten ohne Prioritätssperre unterbrechen sich gegenseitig
+- bei Lauf mit Prioritätssperre werden neue Befehle mit niedrigerer Priorität (höhere Nummer) ignoriert
+- Prioritätsebene löschen während Fahrt mit Prioritätssperre löscht diese, erlaubt neue Befehle
+- Prioritätsebene setzen wirkt nicht dauerhaft, wird auch durch Laufende mit Prioritätssperre gelöscht
+- Verriegelung von Prioritätsebenen wirkt unabhängig vom Setzen, nur auf diese Ebenen, dauerhaft
+
+
+Test-Stimulator
+---------------
+
+- Kommando senden
+- feste Zeit warten
+- auf bestimmte Antwort warten, ggf. mit (teilweisen) Wildcards
+- Antwort innerhalb eines Zeitfensters
+- Rückgabewerte verifizieren
+- Ausgabe von Strings, Werten
+- Kommentare
