@@ -33,8 +33,8 @@
 
 #define HZ 100UL // ticks per second
 
-#define TIMER_TICK_ISR    SIGNAL(SIG_OVERFLOW0)
-#define TIMER_CAPTURE_ISR SIGNAL(SIG_INPUT_CAPTURE1)
+#define TIMER_TICK_ISR    SIGNAL(TIMER0_OVF_vect)
+#define TIMER_CAPTURE_ISR SIGNAL(TIMER1_CAPT1_vect)
 
 inline static void hal_timer_init(uint8_t initvalue)
 {

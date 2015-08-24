@@ -39,9 +39,9 @@
 // adapt Mega8 names to the newer Mega88 register+bit names
 
 // interrupts
-#define SIG_UART_RECV SIG_USART_RECV
-#define SIG_UART_DATA SIG_USART_DATA
-#define SIG_UART_TRANS SIG_USART_TRANS
+#define SIG_UART_RECV USART_RX_vect    //SIG_USART_RECV
+#define SIG_UART_DATA USART_UDRE_vect   //SIG_USART_DATA
+#define SIG_UART_TRANS USART_TX_vect   //SIG_USART_TRANS
 
 // registers with changed names, but same function
 #define OCR2 OCR2A
@@ -73,7 +73,7 @@
 #define URSEL USBS // hack to get rid of deprecated URSEL
 
 // interrupt
-#define SIG_OUTPUT_COMPARE2 SIG_OUTPUT_COMPARE2A
+#define SIG_OUTPUT_COMPARE2 TIMER2_COMPA_vect  // SIG_OUTPUT_COMPARE2A
 
 #elif defined (__AVR_ATmega8__)
 
