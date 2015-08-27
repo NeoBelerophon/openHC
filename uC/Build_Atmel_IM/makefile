@@ -19,7 +19,7 @@
 ####### The variable part of the makefile #######
 
 # MCU name
-MCU = atmega8
+MCU = atmega328p
 #MCU = atmega88
 
 # Target file name (without extension).
