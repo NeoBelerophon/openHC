@@ -432,7 +432,7 @@ void output_cmd_end(uint8_t valid, uint8_t retry)
 			    uint8_t channel = output.cmd >> 5;
 			    uint8_t function = output.cmd & 0x1F;
                 uint8_t mask = (uint8_t)1 << channel;
-                uint32_t time = output.new_time * HZ; // 0 if not set
+                uint32_t time = (uint32_t)output.new_time * HZ; // 0 if not set
                 uint8_t cleartime = 0; // set for all ops which override a pending timed one
 
                 // copy current state
@@ -474,11 +474,11 @@ void output_cmd_end(uint8_t valid, uint8_t retry)
                     new_lock &= ~mask;
                     break;
 
-                case OUTPUT_DELAY_ON: // Einschaltverzögerung
+                case OUTPUT_DELAY_ON: // Einschaltverzï¿½gerung
                     output.action[channel] = act_on;
                     break;
 
-                case OUTPUT_DELAY_OFF: // Ausschaltverzögerung
+                case OUTPUT_DELAY_OFF: // Ausschaltverzï¿½gerung
                     output.action[channel] = act_off;
                     break;
 
@@ -492,7 +492,7 @@ void output_cmd_end(uint8_t valid, uint8_t retry)
                     output.action[channel] = act_on;
                     break;
 
-                case OUTPUT_DELAY_TOGGLE: // Verzögert umschalten, zeitverriegelt
+                case OUTPUT_DELAY_TOGGLE: // Verzï¿½gert umschalten, zeitverriegelt
                     new_lock |= mask;
                     output.unlock |= mask;
                     output.action[channel] = act_toggle;
@@ -510,7 +510,7 @@ void output_cmd_end(uint8_t valid, uint8_t retry)
                     cleartime = 1; // ToDo: really cancel pending cmd?
                     break;
 
-                case OUTPUT_TIMED_LOCK: // Verriegeln für laufende Zeit
+                case OUTPUT_TIMED_LOCK: // Verriegeln fï¿½r laufende Zeit
                     // has a side-effect of permanently locking if no time running, like original
                     new_lock |= mask;
                     output.unlock |= mask;
