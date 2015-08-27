@@ -220,7 +220,7 @@ void input_payload(uint8_t pos, uint8_t byte)
         }
 		
 		// prepare our only non-simple command
-		if (input.cmd == 0xFE) // configuration
+        if (input.cmd == 0xFE || input.cmd == 0xFC) // configuration
 		{
 			uint8_t i;	
 			for (i=INPUT_ON_GREATER_0; i<=INPUT_OFF; i++)

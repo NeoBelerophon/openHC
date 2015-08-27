@@ -34,6 +34,7 @@
 #define HZ 100UL // ticks per second
 
 #define TIMER_TICK_ISR    SIGNAL(TIMER0_OVF_vect)
+#define TIMER_HIGHRES_ISR SIGNAL(TIMER1_OVF_vect)
 #define TIMER_CAPTURE_ISR SIGNAL(TIMER1_CAPT1_vect)
 
 inline static void hal_timer_init(uint8_t initvalue)
@@ -42,18 +43,22 @@ inline static void hal_timer_init(uint8_t initvalue)
     TCCR0 = _BV(CS02) | _BV(CS00); // prescaler to /1024, as large as possible while resolving HZ
     TCNT0 = 255 - initvalue;
     
+	// note: TIMSK0 and TIMSK1 are the same register at Mega8, be careful about direct assignments!
+
     TIMSK0 |= _BV(TOIE0); // enable overflow interrupt
 
     // timer1 init
     TCCR1B = _BV(ICNC1) | _BV(CS10); // capture filter, set prescale=1, (free running)
 #ifdef CFG_IR
-    TIMSK1 |= _BV(TICIE1); // capture interrupt, ToDo: move this?
+    TIMSK1 |= _BV(TOIE1) | _BV(TICIE1); // overflow + capture interrupt, ToDo: move this?
+#else
+	TIMSK1 |= _BV(TOIE1); // overflow interrupt
 #endif // CFG_IR
 
 }
 
-// currently not used
-inline static uint16_t hal_timer_performance_counter(void)
+// high resolution counter, lower 16 bit
+inline static uint16_t hal_timer_hires_lsb(void)
 {
     return TCNT1;
 }
@@ -66,6 +71,13 @@ inline static void hal_timer_clear_irq(void)
     //  but only if the ISR latency is ~1024 cycles, hope to be much faster
 }
 
+
+// return != 0 if an unhandled overflow interrupt is pending
+inline static uint8_t hal_timer_hires_ovf(void)
+{
+	return TIFR1 & _BV(TOV1);
+}
+ 
 
 
 #endif // #ifndef _TIMER_PLATFORM_H

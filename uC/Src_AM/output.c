@@ -440,7 +440,7 @@ void output_cmd_end(uint8_t valid, uint8_t retry)
                 uint8_t new_lock = output.lock;
 
                 if (retry // repeated command: our reply wasn't received, action already happened last time
-                    || ((output.lock & mask) && function < OUTPUT_UNLOCK)) // when locked, accept no switch cmd
+                		|| ((output.lock & mask) && (function != OUTPUT_UNLOCK) && (function != OUTPUT_LOCK))) // when locked, accept no switch cmd
                 {
                     function = 0; // now do nothing
                     time = 0;
@@ -507,7 +507,8 @@ void output_cmd_end(uint8_t valid, uint8_t retry)
 
                 case OUTPUT_LOCK: // Fest verriegeln
                     new_lock |= mask;
-                    cleartime = 1; // ToDo: really cancel pending cmd?
+                    // does not cancel pending cmd
+                    output.unlock &= ~mask;  // keep locked after timer expiration
                     break;
 
                 case OUTPUT_TIMED_LOCK: // Verriegeln f�r laufende Zeit

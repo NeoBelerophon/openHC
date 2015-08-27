@@ -99,7 +99,12 @@ void hal_set_edge(uint8_t edge); // set the capture edge, 0=falling, 1=rising
 #ifdef CFG_ADC
 uint16_t hal_read_voltage(void); // return the measured supply voltage (in mV)
 void hal_start_adc(void); // start an ADC conversion
+#endif
 
+#ifdef CFG_LDR
+void hal_ldr_init(void); // init the resistor measurement
+void hal_ldr_start(uint8_t channel); // start measuring, channel 0...2
+void hal_ldr_done(void); // cleanup after interrupt (or timeout)
 #endif
 
 

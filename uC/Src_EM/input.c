@@ -19,7 +19,7 @@
 /*! \file input.c
     \brief Application layer of the EM and UEM module.
     
-    There is a derivative of this file in "Src_IM/input.c".
+    There are derivatives of this file in "Src_IM/input.c" and "Src_LUX/input.c".
     Make sure to propagate relevant changes there, too!
 */
 
@@ -215,7 +215,7 @@ void input_payload(uint8_t pos, uint8_t byte)
         }
 		
 		// prepare our only non-simple command
-		if (input.cmd == 0xFE) // configuration
+        if (input.cmd == 0xFE || input.cmd == 0xFC) // configuration
 		{
 			uint8_t i;	
 			for (i=INPUT_ON_GREATER_0; i<=INPUT_OFF; i++)

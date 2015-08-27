@@ -40,7 +40,9 @@
 #define BAUDRATE 19200ULL // ULL for being 32 bit with -mint8
 
 // this timeout also controls our answer time, to allow for STM turnaround
-#define RX_TIMEOUT (1+8+2 + 5) // allow byte time 5 bits grace time between bytes (so slow because of fat ISRs?)
+#define RX_TIMEOUT (1+8+2 + 8) // allow byte time plus 8 bits grace time between bytes (so slow because of fat ISRs?)
+                               // need 8 bit for -O1 (debug), 4 bits for -Os (release build)
+
 
 // consider the line as free after waiting for some worst case answer time
 #define FREELINE_TIME (1+33) // free after no less than 33 bits idle, plus 2nd stopbit

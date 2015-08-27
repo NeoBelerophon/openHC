@@ -30,6 +30,7 @@
 
 static uint32_t timer_delay_ticks;
 static void (*timer_tick_callback)(void);
+volatile uint16_t timer_hires_msb_; // upper bits of performance counter
 
 /*************** public API functions ***************/
 
@@ -39,11 +40,6 @@ void timer_init(void (*callback)(void), uint8_t initvalue)
 {
     timer_tick_callback = callback;
     hal_timer_init(initvalue);
-}
-
-uint16_t timer_performance_counter(void)
-{
-    return hal_timer_performance_counter();
 }
 
 // delayed message sending
@@ -65,6 +61,8 @@ TIMER_TICK_ISR
 
 	timer_ticks++; // the global counter
 
+    timer_tick_callback();
+
 	// test if a delay message is due
 	if (timer_delay_ticks && --timer_delay_ticks == 0)
 	{
@@ -77,10 +75,15 @@ TIMER_TICK_ISR
 		}
 	}
 
-    timer_tick_callback();
-
 #ifdef CFG_ADC
     hal_start_adc(); // do that last thing before we hopefully sleep again, reduces noise
 #endif
     PROFILE(PF_ISREND_TIMER);
+}
+
+
+// overflow of the highres timer, maintain the MSB part
+TIMER_HIGHRES_ISR
+{
+	timer_hires_msb_ ++;
 }

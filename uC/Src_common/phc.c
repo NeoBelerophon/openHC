@@ -160,7 +160,7 @@ void phc_rcv_byte(uint8_t byte)
 		phc_addr = byte;
 		phc_rcv_state = rcv_len;
         // use external event to get more randomness
-        rand_randomize(timer_performance_counter());
+        rand_randomize(timer_hires_lsb());
 		break;
 
 	case rcv_len:

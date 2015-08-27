@@ -289,3 +289,41 @@ void hal_set_edge(uint8_t edge)
 	TCCR1B = value;
 }
 #endif // CFG_IR
+
+
+#ifdef CFG_LDR
+
+// init the resistor measurement
+void hal_ldr_init(void)
+{
+	PORTB &= ~0x0E; // drive all channels low
+	DDRB |= 0x0E; // drive all 
+
+	// disable comparator, prepare reference and capture
+	ACSR = _BV(ACD) | _BV(ACBG) | _BV(ACO) | _BV(ACI) | _BV(ACIC);
+	ADMUX = _BV(REFS1) | _BV(REFS0); // internal reference (not necessary), ADC0
+	ADCSRB |= _BV(ACME); // input from A/D mux
+
+	return;
+}
+
+// start measuring, channel 1...3 given by bit mask (only one set)
+void hal_ldr_start(uint8_t channel)
+{
+	uint8_t mask = 2 << channel;
+	ACSR &= ~_BV(ACD); // enable comparator
+
+	DDRB = (DDRB & ~0x0E) | mask; // tristate all other channels
+	PORTB = (PORTB & ~0x0E) | mask; // drive our channel high
+}
+
+// return the charge time in clock cycles, after interrupt
+void hal_ldr_done(void)
+{
+	ACSR |= _BV(ACD); // disable the comparator
+
+	PORTB &= ~0x0E; // drive all channels low
+	DDRB |= 0x0E; // drive all 
+}
+
+#endif // CFG_LDR

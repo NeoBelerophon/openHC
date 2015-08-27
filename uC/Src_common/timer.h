@@ -29,12 +29,24 @@
 
 extern uint32_t timer_ticks; // directly export the tick count
 
+
 void timer_init(void (*callback)(void), uint8_t initvalue);
 
 // delayed message sending
 void timer_msg(uint32_t ticks);
 
-// high resolution timer
-uint16_t timer_performance_counter(void);
+// high resolution timer, note: take care about the skew between MSB and LSB part
+
+inline static uint16_t timer_hires_lsb(void) // return lower part from hardware
+{
+    return hal_timer_hires_lsb();
+}
+
+extern volatile uint16_t timer_hires_msb_; // no official export, just for the inline
+
+inline static uint16_t timer_hires_msb(void)
+{
+    return timer_hires_msb_;
+}
 
 #endif // #ifndef _TIMER_H

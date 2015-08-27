@@ -68,6 +68,7 @@
 #define USBS USBS0
 #define OCF2 OCF2A
 #define OCIE2 OCIE2A
+#define TICIE1 ICIE1
 
 // deprecated register bits
 #define URSEL USBS // hack to get rid of deprecated URSEL
@@ -86,6 +87,7 @@
 #define EICRA MCUCR
 #define EIMSK GICR
 #define EIFR GIFR
+#define ADCSRB SFIOR
 
 #else
 #error "Unsupported AVR controller!"
