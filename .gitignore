@@ -2,3 +2,9 @@
 *.svn
 *core
 *.dep
+*.eep
+*.elf
+*.lss
+*.map
+*.sym
+*.hex
