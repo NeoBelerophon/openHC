@@ -42,6 +42,7 @@ enum msg_id
     e_stop, // stop movement, data is channel #
     e_learned, // IR teach-in has learned a code
 	e_ldr, // LDR measurement done, data is channel #
+	e_temperature, // temperature measurement is done
 	e_last	
 };
 

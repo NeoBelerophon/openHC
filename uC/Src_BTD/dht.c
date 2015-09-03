@@ -14,7 +14,59 @@ Please refer to LICENSE file for licensing information.
 #include <util/delay.h>
 
 #include "dht.h"
+#include "msg.h"
 
+enum dht_states{
+	RESET,
+	WAITONRESET,
+	REQUEST,
+};
+
+
+static struct _global_dht_context
+{   // codesize saver: place the most frequented on top, cluster them like locally used
+	enum dht_states state = RESET;
+	uint8_t bits[5];
+	uint8_t i,j = 0;
+	uint16_t waitCounter;
+	uint16_t storedTemperature;
+} dht;
+
+void dht_tick()
+{
+	/*switch(dht.state)
+	{
+	case RESET:
+		dht.i = 0;
+		dht.j = 0;
+		memset(dht.bits, 0, sizeof(dht.bits));
+		DHT_DDR |= (1<<DHT_INPUTPIN); //output
+		DHT_PORT |= (1<<DHT_INPUTPIN); //high
+		dht.waitCounter = 0;
+		dht.state = WAITONRESET;
+		break;
+	case WAITONRESET:
+		if(dht.waitCounter++ >= 10) // 100ms
+			dht.state = REQUEST;
+		break;
+	case REQUEST:
+
+		break;
+	}*/
+	float temp;
+	uint8_t result = dht_getTemperatur(temp);
+	uint16_t temperature = ((int)temp * 10);
+	if(abs(temperature - dht.storedTemperature)>0)
+	{
+		dht.storedTemperature = temperature;
+	}
+
+	struct msg message;
+	message.id = e_temperature;
+	message.data = 0;
+	msg_post(&message);
+
+}
 /*
  * get data from sensor
  */

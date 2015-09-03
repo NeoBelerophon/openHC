@@ -23,7 +23,7 @@ MCU = atmega328p
 #MCU = atmega88
 
 # Target file name (without extension).
-TARGET = im
+TARGET = btd
 
 # List C source files here. (C dependencies are automatically generated.)
 SRC = \

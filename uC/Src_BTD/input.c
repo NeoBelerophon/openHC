@@ -26,7 +26,7 @@
 #define __FILENUM__ 20 // every file needs to have a unique (8bit) ID
 
 #include <stdint.h>
-#include "rc5.h"
+#include "dht.h"
 #include "msg.h"
 #include "timer.h"
 #include "hal.h"
@@ -58,6 +58,7 @@ static struct _global_input_context
     uint8_t retry_wait; // packet retry time
     uint8_t ping_reply_len; // 4 or 5, larger if 16 inputs and talking to an STM v2.x
     enum e_inputstate state;
+    uint16_t temperature;
 
     // state for interrupt context packet parsing
     uint8_t addr;
@@ -131,7 +132,15 @@ void input_mainloop(void)
 			    response[5] = current >> 8;
 			    response[6] = input.leds & 0xFF;
 			    response[7] = input.leds >> 8; // unused if 8 inputs or STM1
-			    //TODO: Temp etc..
+			    response[8] = 0x57;			// temp1 ?
+			    response[9] = 0x6c;
+			    response[10] = 0x04;
+			    response[11] = 0x57;		// temp2 ?
+			    response[12] = 0xe4;
+			    response[13] = 0x04;
+			    response[14] = 0x01;
+			    response[15] = 0x08;
+			    response[16] = 0x20;
 			    phc_send(input.modul_addr, response, input.ping_reply_len, message.data);		
             }
 			break;
@@ -184,11 +193,22 @@ void input_mainloop(void)
                 switch_nack(); // restore the event queue, event will be re-posted
 			}
 			break;
-			
+		case e_temperature:
+			if (!uart_is_busy()) // about to send unsolicited: only with idle line
+			{
+				response[2] = 0x87;
+				response[3] = 0x57;
+				response[4] = 0xEE;
+				response[5] = 0x04;
+
+				phc_send(input.modul_addr, response, 4, input.toggle);
+			}
+			break;
 		default: // unhandled message
 			ASSERT(0);
 		} // case
 		
+		dht_tick();
 
 	} // while(1)
 }
@@ -319,7 +339,7 @@ void input_cmd_end(uint8_t valid, uint8_t retry)
         case 0xFC: // configuration from STM2
 	    case 0xFE: // configuration
 		    {
-                input.ping_reply_len = (input.cmd == 0xFC) ? 5 : 4; // long answer to STM2
+                input.ping_reply_len =  15;
 
     		    // copy the new config
                 switch_set_enable(input.new_enable);
@@ -356,14 +376,14 @@ void input_cmd_end(uint8_t valid, uint8_t retry)
 			    case 2: // LED on, enable IR code learning for a channel
 				    input.leds = (switch_t)1 << channel;
 				    hal_set_led(7); // indicate learning mode and muted
-			    	rc5_learn(channel); // set learning
+			    	//rc5_learn(channel); // set learning
 				    id = e_send_state;
 				    break;	
 
 			    case 3: // LED off, back to normal function
 				    input.leds = 0;
 				    hal_set_led(0);
-				    rc5_normal(); // learning mode off and muted off
+				    //rc5_normal(); // learning mode off and muted off
 				    id = e_send_state;
 				    break;	
 			    }

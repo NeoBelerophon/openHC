@@ -27,9 +27,11 @@
 #include "timer.h"
 #include "msg.h"
 #include "input.h"
-#include "rc5.h"
+#include "dht.h"
 #include "phc.h"
 #include "random.h"
+
+void empty(void){}
 
 int main(void)
 {
@@ -42,7 +44,7 @@ int main(void)
 
     uart_init(addr); // timeout affects collision recovery, use address
     rand_seed(((uint16_t)addr << 8) | (uint16_t)addr);
-	timer_init(switch_tick, addr); // init with system-wide unique value
+	timer_init(empty, addr); // init with system-wide unique value
 	phc_init(input_cmd_start, input_payload, input_cmd_end);
 
 	input_init(addr);
