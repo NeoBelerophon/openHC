@@ -12,6 +12,7 @@ Please refer to LICENSE file for licensing information.
 #include <string.h>
 #include <avr/io.h>
 #include <util/delay.h>
+#include <stdlib.h>
 
 #include "dht.h"
 #include "msg.h"
@@ -25,15 +26,18 @@ enum dht_states{
 
 static struct _global_dht_context
 {   // codesize saver: place the most frequented on top, cluster them like locally used
-	enum dht_states state = RESET;
+	enum dht_states state;
 	uint8_t bits[5];
-	uint8_t i,j = 0;
 	uint16_t waitCounter;
 	uint16_t storedTemperature;
 } dht;
 
-void dht_tick()
+void dht_tick(void)
 {
+	DDRD |= 0x40; //output
+	PORTD ^= 0x40; //high
+	
+	
 	/*switch(dht.state)
 	{
 	case RESET:
@@ -54,7 +58,7 @@ void dht_tick()
 		break;
 	}*/
 	float temp;
-	uint8_t result = dht_getTemperatur(temp);
+	uint8_t result = dht_gettemperature(&temp);
 	uint16_t temperature = ((int)temp * 10);
 	if(abs(temperature - dht.storedTemperature)>0)
 	{

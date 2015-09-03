@@ -49,4 +49,6 @@ extern int8_t dht_gethumidity(int8_t *humidity);
 extern int8_t dht_gettemperaturehumidity(int8_t *temperature, int8_t *humidity);
 #endif
 
+void dht_tick(void);
+
 #endif

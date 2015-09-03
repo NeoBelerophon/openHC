@@ -34,6 +34,7 @@
 #include "uart.h"
 #include "random.h"
 #include "input.h"
+#include "switch.h"
 
 // PHC receiver state
 enum e_inputstate
@@ -208,7 +209,7 @@ void input_mainloop(void)
 			ASSERT(0);
 		} // case
 		
-		dht_tick();
+		//dht_tick();
 
 	} // while(1)
 }

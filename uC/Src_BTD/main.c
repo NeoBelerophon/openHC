@@ -40,11 +40,11 @@ int main(void)
     hal_sysinit();
     hal_watchdog_enable();
     addr = hal_get_addr(); // device address from DIP switches
-    addr |= 0x00; // add the device class
+    addr |= 0x20; // add the device class
 
     uart_init(addr); // timeout affects collision recovery, use address
     rand_seed(((uint16_t)addr << 8) | (uint16_t)addr);
-	timer_init(empty, addr); // init with system-wide unique value
+	timer_init(dht_tick, addr); // init with system-wide unique value
 	phc_init(input_cmd_start, input_payload, input_cmd_end);
 
 	input_init(addr);
