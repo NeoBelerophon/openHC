@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>6.2</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>6a13ab85-fbd3-4d6a-a2da-edfa650997ff</ProjectGuid>
+    <Name>BTD</Name>
+    <avrdevice>ATmega328P</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <AvrProjectType>Importer</AvrProjectType>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>UEM</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <avrtool>com.atmel.avrdbg.tool.ispmk2</avrtool>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.26.0" />
+        </dependencies>
+      </framework-data>
+    </AsfFrameworkConfig>
+    <avrtoolinterface>ISP</avrtoolinterface>
+    <com_atmel_avrdbg_tool_ispmk2>
+      <ToolOptions>
+        <InterfaceProperties>
+          <IspClock>125000</IspClock>
+        </InterfaceProperties>
+        <InterfaceName>ISP</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.ispmk2</ToolType>
+      <ToolNumber>000200090638</ToolNumber>
+      <ToolName>AVRISP mkII</ToolName>
+    </com_atmel_avrdbg_tool_ispmk2>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>true</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>true</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>CFG_INPUT=16</Value>
+            <Value>F_CPU=16000000UL</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>..\..\Src_BTD</Value>
+            <Value>..\..\Src_common</Value>
+            <Value>..\..\Src_common\Platform_AVR</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>true</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>true</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.warnings.AllWarnings>true</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -mint8 -mtiny-stack</avrgcc.compiler.miscellaneous.OtherFlags>
+        <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2  -mint8  -mtiny-stack  -DCFG_INPUT=16            -DF_CPU=16000000UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall -gdwarf-2  -mint8  -mtiny-stack  -DCFG_INPUT=16            -DF_CPU=16000000UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums</avrgcc.assembler.general.AssemblerFlags>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>..\..\Src_BTD</Value>
+            <Value>..\..\Src_common</Value>
+            <Value>..\..\Src_common\Platform_AVR</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+      </AvrGcc>
+    </ToolchainSettings>
+    <BuildTarget>all</BuildTarget>
+    <CleanTarget>clean</CleanTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>true</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>true</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>F_CPU=16000000UL</Value>
+            <Value>CFG_INPUT=16</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>..\..\Src_BTD</Value>
+            <Value>..\..\Src_common</Value>
+            <Value>..\..\Src_common\Platform_AVR</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>true</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>true</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.warnings.AllWarnings>true</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -mint8 -mtiny-stack</avrgcc.compiler.miscellaneous.OtherFlags>
+        <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2 -mint8 -mtiny-stack -DF_CPU=16000000UL -O1 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -DCFG_INPUT=16 -Wall -gdwarf-2 -mint8 -mtiny-stack -DF_CPU=16000000UL -O1 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -DCFG_INPUT=16</avrgcc.assembler.general.AssemblerFlags>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>..\..\Src_BTD</Value>
+            <Value>..\..\Src_common</Value>
+            <Value>..\..\Src_common\Platform_AVR</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+      </AvrGcc>
+    </ToolchainSettings>
+    <BuildTarget>all</BuildTarget>
+    <CleanTarget>clean</CleanTarget>
+  </PropertyGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+  <ItemGroup>
+    <Compile Include="..\Src_common\uart.h">
+      <SubType>compile</SubType>
+      <Link>uart.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\errlog.h">
+      <SubType>compile</SubType>
+      <Link>errlog.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\hal.h">
+      <SubType>compile</SubType>
+      <Link>hal.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\msg.h">
+      <SubType>compile</SubType>
+      <Link>msg.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\phc.h">
+      <SubType>compile</SubType>
+      <Link>phc.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\random.h">
+      <SubType>compile</SubType>
+      <Link>random.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\timer.h">
+      <SubType>compile</SubType>
+      <Link>timer.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\Platform_AVR\uart_platform.h">
+      <SubType>compile</SubType>
+      <Link>uart_platform.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\Platform_AVR\hal_platform.h">
+      <SubType>compile</SubType>
+      <Link>hal_platform.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\Platform_AVR\timer_platform.h">
+      <SubType>compile</SubType>
+      <Link>timer_platform.h</Link>
+    </Compile>
+    <Compile Include="..\Src_common\uart.c">
+      <SubType>compile</SubType>
+      <Link>uart.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_common\errlog.c">
+      <SubType>compile</SubType>
+      <Link>errlog.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_common\msg.c">
+      <SubType>compile</SubType>
+      <Link>msg.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_common\phc.c">
+      <SubType>compile</SubType>
+      <Link>phc.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_common\random.c">
+      <SubType>compile</SubType>
+      <Link>random.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_common\timer.c">
+      <SubType>compile</SubType>
+      <Link>timer.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_common\Platform_AVR\hal_atmel.c">
+      <SubType>compile</SubType>
+      <Link>hal_atmel.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_BTD\dht.c">
+      <SubType>compile</SubType>
+      <Link>dht.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_BTD\input.c">
+      <SubType>compile</SubType>
+      <Link>input.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\Src_BTD\main.c">
+      <SubType>compile</SubType>
+      <Link>main.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'debug'">
+      </CustomCompilationSetting>
+    </Compile>
+    <Compile Include="switch.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="switch.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
