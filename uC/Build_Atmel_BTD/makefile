@@ -30,6 +30,7 @@ SRC = \
 ../Src_BTD/main.c \
 ../Src_BTD/input.c \
 ../Src_BTD/dht.c \
+../Src_BTD/switch.c \
 ../Src_common/Platform_AVR/hal_atmel.c \
 ../Src_common/msg.c \
 ../Src_common/phc.c \

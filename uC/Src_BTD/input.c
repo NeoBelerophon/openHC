@@ -52,6 +52,8 @@ static struct _global_input_context
     uint8_t modul_addr; // class and module address byte
     switch_t leds; // state of the feedback LEDs
     switch_t new_enable[INPUT_OFF+1]; // which input shall send what, index is function offset
+    uint8_t por_leds; // LED values as set by ISR for POR (always 8, even for wide module)
+    switch_t por_state; // last known STM input line status as set by ISR for POR
     uint8_t toggle; // toggle bit
     uint8_t is_bootcmd; // special flag to test for bootloader mode cmd, too
     uint8_t len; // store the command length to aid final validation
@@ -105,13 +107,6 @@ void input_mainloop(void)
 
 		switch(message.id)
 		{
-		case e_learned:
-			input.leds = 0; // clear the feedback
-		    hal_set_led(4); // main indication off, but still in muted mode
-			// break;
-            // Fall through, send state to indicate learned. 
-            // This is an experimental extension to the normal protocol.
-
 		case e_send_state: // send LED state
 			response[2] = 0x00;
 #if CFG_INPUT == 8
@@ -270,7 +265,25 @@ void input_payload(uint8_t pos, uint8_t byte)
 	{
         uint8_t por_size = (input.cmd == 0xFC) ? 4 : 3; // size of POR part
         
-		if (pos > por_size) // skip the POR part, not relevant for us
+        if (pos == 1)
+        {
+            input.por_leds = byte; // remember POR value
+        }
+        else if (pos == 2)
+        {
+            input.por_state = byte; // line state as last known by STM
+        }
+#if CFG_INPUT > 8
+        else if (pos == 3)
+        {   // high part of line state
+            input.por_state |= (switch_t)byte << 8; 
+        }
+        else if (pos == 4 && por_size == 4)
+        {   // high part of LED state
+            input.por_leds |= (switch_t)byte << 8; 
+        }
+#endif        
+        else if (pos > por_size) // event configuration part
 		{
 			uint8_t channel = byte >> 4;
 			uint8_t function = (byte & 0x0F);
@@ -342,7 +355,14 @@ void input_cmd_end(uint8_t valid, uint8_t retry)
 		    {
                 input.ping_reply_len =  15;
 
-    		    // copy the new config
+                // set POR values for feedback outputs
+                input.leds = input.por_leds;
+                hal_set_led(input.leds);
+
+                // set POR input state as known by STM
+                switch_setcurrent(input.por_state);
+                
+                // copy the new config
                 switch_set_enable(input.new_enable);
 
 			    if (input.state == st_cfg)
@@ -375,18 +395,16 @@ void input_cmd_end(uint8_t valid, uint8_t retry)
                 switch (function)
 			    {
 			    case 2: // LED on, enable IR code learning for a channel
-				    input.leds = (switch_t)1 << channel;
-				    hal_set_led(7); // indicate learning mode and muted
-			    	//rc5_learn(channel); // set learning
+				    input.leds |= (switch_t)1 << channel;
+				    hal_set_led(input.leds);
 				    id = e_send_state;
 				    break;	
 
 			    case 3: // LED off, back to normal function
-				    input.leds = 0;
-				    hal_set_led(0);
-				    //rc5_normal(); // learning mode off and muted off
+				    input.leds &= ~((switch_t)1 << channel);
+				    hal_set_led(input.leds);
 				    id = e_send_state;
-				    break;	
+				    break;
 			    }
 		    }		
         } // switch (input.cmd)
