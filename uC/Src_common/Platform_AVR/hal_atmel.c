@@ -240,7 +240,7 @@ uint16_t hal_read_voltage(void)
 }
 
 
-SIGNAL(SIG_ADC)
+SIGNAL(ADC_vect)
 {
     uint16_t result;
     PROFILE(PF_ISRSTART_ADC);
