@@ -44,7 +44,7 @@ int main(void)
 
     uart_init(addr); // timeout affects collision recovery, use address
     rand_seed(((uint16_t)addr << 8) | (uint16_t)addr);
-	timer_init(dht_tick, addr); // init with system-wide unique value
+	timer_init(&dht_tick, addr); // init with system-wide unique value
 	phc_init(input_cmd_start, input_payload, input_cmd_end);
 
 	input_init(addr);
