@@ -52,4 +52,18 @@ extern int8_t dht_gettemperaturehumidity(int8_t *temperature, int8_t *humidity);
 
 void dht_tick(void);
 
+struct {
+#if DHT_FLOAT == 1
+	float temperature;
+	float humidity;
+#elif DHT_FLOAT == 0
+	int8_t temperature;
+	int8_t humidity;
+#endif
+	uint16_t phc_temperature;
+	uint16_t phc_humidity;
+
+} dht_data;
+
+
 #endif

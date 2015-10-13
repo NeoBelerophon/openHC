@@ -61,7 +61,6 @@ static struct _global_input_context
     uint8_t retry_wait; // packet retry time
     uint8_t ping_reply_len; // 4 or 5, larger if 16 inputs and talking to an STM v2.x
     enum e_inputstate state;
-    float temperature;
 	
 
     // state for interrupt context packet parsing
@@ -99,9 +98,6 @@ void input_init(uint8_t addr)
 void input_mainloop(void)
 {
 	uint8_t response[2+CFG_INPUT+2]; // worst-case size with addr+length, payload, CRC
-	int8_t conv;
-	uint16_t temp_calc;
-	float temperature = 0.0;
 	
 	while (1)
 	{
@@ -193,18 +189,13 @@ void input_mainloop(void)
 			break;
 		case e_temperature:
 			
-				conv = dht_gettemperature(&temperature);
-				
-				if (conv == 0 && temperature != input.temperature)
-				{
-					//printf("Temp: %f", temperature);
-					input.temperature = temperature;
+
 					if (!uart_is_busy()) // about to send unsolicited: only with idle line
 					{
-						temp_calc = (temperature *100) +20000; 
+
 						response[2] = 0x87;
-						response[3] = (temp_calc >> 8);
-						response[4] = (temp_calc& 0xff);
+						response[3] = (dht_data.phc_temperature >> 8);
+						response[4] = (dht_data.phc_temperature & 0xFF);
 						response[5] = 0x04;
 
 						phc_send(input.modul_addr, response, 4, input.toggle);
@@ -212,7 +203,7 @@ void input_mainloop(void)
 					}
 				
 				
-				}
+
 			break;
 		default: // unhandled message
 			ASSERT(0);

@@ -148,12 +148,24 @@ int8_t dht_gettemperaturehumidity(float *temperature, float *humidity) {
 	return dht_getdata(temperature, humidity);
 }
 
+#if DHT_FLOAT == 1
+uint16_t convert_to_PHC(float data)
+#elif DHT_FLOAT == 0
+uint16_t convert_to_PHC(int8_t data)
+#endif
+{
+	return (data *100) +20000;
+}
+
+
 uint8_t dht_tickcounter;
+
 
 void dht_tick(void)
 {
-	
 	struct msg message;
+	int8_t result;
+	
 	if (dht_tickcounter++ == 150)
 	{
 		DHT_DDR |= (1<< DHT_TESTPIN);
@@ -161,9 +173,29 @@ void dht_tick(void)
 		
 		dht_tickcounter = 0;
 		
-		message.id = e_temperature;
-		message.data = 0;
-		msg_post(&message);
+		#if DHT_FLOAT == 1
+			float temperature;
+			float humidity;
+		#elif DHT_FLOAT == 0
+			int8_t temperature;
+			int8_t humidity;
+		#endif
+
+		result = dht_gettemperaturehumidity(&temperature, &humidity);
+
+		if (result > -1 && (dht_data.temperature != temperature || dht_data.humidity != humidity))
+		{
+			//printf("Temp: %f", temperature);
+			dht_data.temperature = temperature;
+			dht_data.humidity = humidity;
+			dht_data.phc_temperature = convert_to_PHC(temperature);
+			dht_data.phc_humidity = convert_to_PHC(humidity);
+
+			message.id = e_temperature;
+			message.data = 0;
+			msg_post(&message);
+		}
 	}
 	
 }
+
