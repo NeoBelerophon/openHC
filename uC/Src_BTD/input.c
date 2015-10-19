@@ -188,22 +188,34 @@ void input_mainloop(void)
 			
 			break;
 		case e_temperature:
-			
+			if (!uart_is_busy()) // about to send unsolicited: only with idle line
+			{
+				switch(message.data)
+				{
+				case Temperature:
+					response[2] = 0x87;
+					response[3] = (dht_data.phc_temperature >> 8);
+					response[4] = (dht_data.phc_temperature & 0xFF);
+					break;
+				case TargetTemperature:
+					response[2] = 0x88;
+					response[3] = (dht_data.phc_target_temperature >> 8);
+					response[4] = (dht_data.phc_target_temperature & 0xFF);
+					break;
+				case Humidity:
+					// Future function
+					response[2] = 0x87;
+					response[3] = (dht_data.phc_temperature >> 8);
+					response[4] = (dht_data.phc_temperature & 0xFF);
+					break;
+				}
 
-					if (!uart_is_busy()) // about to send unsolicited: only with idle line
-					{
+				response[5] = 0x04;
 
-						response[2] = 0x87;
-						response[3] = (dht_data.phc_temperature >> 8);
-						response[4] = (dht_data.phc_temperature & 0xFF);
-						response[5] = 0x04;
-
-						phc_send(input.modul_addr, response, 4, input.toggle);
-						
-					}
+				phc_send(input.modul_addr, response, 4, input.toggle);
 				
+			}
 				
-
 			break;
 		default: // unhandled message
 			ASSERT(0);
