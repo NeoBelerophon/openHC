@@ -163,7 +163,7 @@ uint8_t dht_tickcounter;
 
 void dht_tick(void)
 {
-	struct msg message;
+	struct msg messageTemp, messageTarget;
 	int8_t result;
 	
 	if (dht_tickcounter++ == 150)
@@ -185,15 +185,23 @@ void dht_tick(void)
 
 		if (result > -1 && (dht_data.temperature != temperature || dht_data.humidity != humidity))
 		{
-			//printf("Temp: %f", temperature);
 			dht_data.temperature = temperature;
 			dht_data.humidity = humidity;
 			dht_data.phc_temperature = convert_to_PHC(temperature);
 			dht_data.phc_humidity = convert_to_PHC(humidity);
 
-			message.id = e_temperature;
-			message.data = 0;
-			msg_post(&message);
+			messageTemp.id = e_temperature;
+			messageTemp.data = dht_data.temperature;
+			msg_post(&messageTemp);
+		}
+
+		if( dht_data.phc_target_temperature == 0){
+			dht_data.target_temperature = 25;
+			dht_data.phc_target_temperature = convert_to_PHC(dht_data.target_temperature);
+
+			messageTarget.id = e_temperature;
+			messageTarget.data = dht_data.target_temperature;
+			msg_post(&messageTarget);
 		}
 	}
 	
